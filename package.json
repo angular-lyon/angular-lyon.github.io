@@ -11,7 +11,9 @@
     "dev:ssr": "ng run angular-lyon:serve-ssr",
     "serve:ssr": "node dist/angular-lyon/server/main.js",
     "build:ssr": "ng build --prod && ng run angular-lyon:server:production",
-    "prerender": "ng run angular-lyon:prerender"
+    "prerender": "ng run angular-lyon:prerender --routes",
+    "prerender:prod": "ng run angular-lyon:prerender --routes -c=production",
+    "release": "yarn prerender:prod && node ./.github/publish.js"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +43,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "gh-pages": "^2.2.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.3.0",
