@@ -38,3 +38,7 @@ To publish a static pre-rendered build run the following:
 ```bash
 yarn release
 ```
+
+## License
+
+This website is under MIT license.
