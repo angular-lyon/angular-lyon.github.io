@@ -72,25 +72,37 @@ footer a {
   margin-top: 16px;
 }
 
+.past-events {
+  display: flex;
+
+  > * {
+    width: 40%;
+  }
+
+}
+
+.details {
+  margin: 20px 0;
+}
+
 .card {
   border-radius: 4px;
   border: 1px solid #eee;
   background-color: #fafafa;
-  width: 200px;
   margin: 0 8px 16px;
   padding: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease-in-out;
   line-height: 24px;
-  text-align: center;
+  transition: all 0.2s ease-in-out;
 
   &.highlight-card {
     background-color: #1976d2;
+    text-align: center;
     color: white;
     border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: auto;
     max-width: 640px;
     min-width: 30%;
