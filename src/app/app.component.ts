@@ -17,14 +17,14 @@ import { MeetupService } from './meetup.service';
 
       <section>
         <h2>Prochain évènement</h2>
-        <article *ngIf="upcomingEvent$ | push as event; else noUpcomingEvent">
+        <article *ngIf="upcomingEvent$ | push as event; else placeholder">
           <div class="card">
             <a [href]="event.link">{{ event.name }}</a>
-            <p [innerHTML]="event.description"></p>
+            <div [innerHTML]="event.description"></div>
           </div>
         </article>
-        <ng-template #noUpcomingEvent>
-          <p>Pas d'évènement prévu prochainement.</p>
+        <ng-template #placeholder>
+          <p class="placeholder">Pas d'évènement prévu prochainement, patience!</p>
         </ng-template>
       </section>
 
@@ -89,6 +89,16 @@ import { MeetupService } from './meetup.service';
 
       .past-events > * {
         width: 40%;
+      }
+
+      .placeholder {
+        margin-top: 36px;
+      }
+
+      .card a {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
       }
     `,
   ],
