@@ -39,12 +39,16 @@ import {
         justify-content: center;
         align-items: center;
         width: auto;
+        margin: auto;
         max-width: 650px;
         min-width: 30%;
-        line-height: 28px;
-        font-size: 1.2rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         padding: 1.2rem 16px 16px;
+      }
+
+      .card p {
+        line-height: 28px;
+        font-size: 1.2rem;
       }
 
       .logo {

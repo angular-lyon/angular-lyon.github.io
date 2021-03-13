@@ -9,34 +9,34 @@ import { MeetupService } from "./meetup.service";
     <app-banner></app-banner>
 
     <div class="content" role="main">
-      <h2>Communauté</h2>
-      <p>Notre focus au travers du groupe:</p>
+      <section>
+        <h2>Communauté</h2>
+        <p>Notre focus au travers du groupe :</p>
+        <app-slider></app-slider>
+      </section>
 
-      <app-slider></app-slider>
+      <section>
+        <h2>Prochain évènement</h2>
+        <article *ngIf="upcomingEvent as event; else noUpcomingEvent">
+          <div class="card">
+            <a [href]="event.link">{{ event.name }}</a>
+            <p [innerHTML]="event.description"></p>
+          </div>
+        </article>
+        <ng-template #noUpcomingEvent>
+          <p>Pas d'évènement prévu prochainement.</p>
+        </ng-template>
+      </section>
 
-      <h2>Prochain évènement</h2>
-
-      <div
-        class="card-container"
-        *ngIf="upcomingEvent as event; else noUpcomingEvent"
-      >
-        <div class="card">
-          <a [href]="event.link">{{ event.name }}</a>
-          <p [innerHTML]="event.description"></p>
-        </div>
-      </div>
-
-      <ng-template #noUpcomingEvent>
-        <p>Pas d'évènement prévu prochainement.</p>
-      </ng-template>
-
-      <h2>Évènements passés</h2>
-      <div class="card-container" *ngFor="let event of pastEvents">
-        <div class="card">
-          <a [href]="event.link">{{ event.name }}</a>
-          <p [innerHTML]="event.description"></p>
-        </div>
-      </div>
+      <section>
+        <h2>Évènements passés</h2>
+        <article *ngFor="let event of pastEvents">
+          <div class="card">
+            <a [href]="event.link">{{ event.name }}</a>
+            <p [innerHTML]="event.description"></p>
+          </div>
+        </article>
+      </section>
     </div>
 
     <footer>
@@ -61,13 +61,26 @@ import { MeetupService } from "./meetup.service";
         width: 100%;
       }
 
-      .card-container:last-child .card {
-        margin-bottom: 0;
+      .card {
+        margin: 12px 0;
       }
 
-      footer a {
-        display: flex;
-        align-items: center;
+      section h2 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      app-slider,
+      section {
+        margin-top: 38px;
+      }
+
+      section:first-child {
+        margin-top: 58px;
+      }
+
+      section:last-child .card {
+        margin-bottom: 0;
       }
 
       .past-events {

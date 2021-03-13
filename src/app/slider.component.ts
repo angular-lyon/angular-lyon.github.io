@@ -1,9 +1,16 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgModule, OnDestroy, OnInit } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  NgModule,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
+import { interval, Subscription } from "rxjs";
+import { tap } from "rxjs/operators";
 
-import { AutofocusModule } from './autofocus.directive';
+import { AutofocusModule } from "./autofocus.directive";
 
 @Component({
   selector: "app-slider",
@@ -17,7 +24,7 @@ import { AutofocusModule } from './autofocus.directive';
         (click)="setActive(index)"
       >
         <span class="icon">{{ slide.icon }}</span>
-        <span>{{ slide.description }}</span>
+        <p>{{ slide.description }}</p>
       </div>
     </div>
 
@@ -33,20 +40,38 @@ import { AutofocusModule } from './autofocus.directive';
 
       .card-container {
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        margin-top: 16px;
+      }
+
+      .card:first-child {
+        margin-left: 0;
+      }
+
+      .card:last-child {
+        margin-right: 0;
       }
 
       .card {
         display: flex;
         flex-direction: column;
+        flex-basis: 180px;
+        margin: 0 4px 16px;
+        padding: 10px 22px;
+        line-height: 24px;
+        border-radius: 10px;
+        text-align: center;
         cursor: pointer;
       }
 
       .icon {
+        display: block;
+        margin-bottom: 8px;
         text-align: center;
-        font-size: 18px;
+        font-size: 22px;
+      }
+
+      .card {
+        transition: ease all 300ms;
       }
 
       .card:focus {
@@ -54,12 +79,13 @@ import { AutofocusModule } from './autofocus.directive';
         background: #fff;
         box-shadow: 0 2px 10px rgb(0 0 0 / 11%);
         outline: none;
+        font-weight: bold;
       }
 
       .details {
-        text-align: center;
         margin: 20px 0;
         font-size: 1.4rem;
+        font-style: italic;
       }
     `,
   ],
@@ -70,7 +96,8 @@ export class SliderComponent implements OnInit, OnDestroy {
     {
       value: "discussions",
       description: "Discussions libres.",
-      detail: "Des discussions libres pour les gurus, les rookies ou simplement les curieux.",
+      detail:
+        "Des discussions libres pour les gurus, les rookies ou simplement les curieux.",
       icon: "👥",
     },
     {
@@ -82,13 +109,15 @@ export class SliderComponent implements OnInit, OnDestroy {
     {
       value: "workshops",
       description: "Workshops autour d'Angular.",
-      detail: "La pratique d'un sujet en particulier au travers de travaux guidés.",
+      detail:
+        "La pratique d'un sujet en particulier au travers de travaux guidés.",
       icon: "🛠",
     },
     {
       value: "bring-your-problem",
       description: "Ramène ton problème.",
-      detail: "On réfléchi à une solution ensemble, puis on propose un workshop pour le résoudre.",
+      detail:
+        "On réfléchi à une solution ensemble, puis on propose un workshop pour le résoudre.",
       icon: "🐞",
     },
   ];

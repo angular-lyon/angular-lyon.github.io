@@ -11,7 +11,7 @@ export class AutofocusDirective implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.autofocus.currentValue === true) {
-      this.el.nativeElement && this.el.nativeElement.focus();
+      this.el.nativeElement && this.el.nativeElement.focus({ preventScroll: true });
     }
   }
 }
