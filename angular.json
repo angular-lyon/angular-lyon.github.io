@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": ".",
   "projects": {
     "angular-lyon": {
@@ -160,7 +160,7 @@
           "options": {
             "browserTarget": "angular-lyon:build:production",
             "serverTarget": "angular-lyon:server:production",
-            "routes": []
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
