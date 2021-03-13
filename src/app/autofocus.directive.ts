@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Directive, ElementRef, Input, NgModule, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, NgModule, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: "[autofocus]",

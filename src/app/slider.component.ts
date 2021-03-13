@@ -1,16 +1,9 @@
-import { CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  NgModule,
-  OnDestroy,
-  OnInit,
-} from "@angular/core";
-import { interval, Subscription } from "rxjs";
-import { tap } from "rxjs/operators";
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgModule, OnDestroy, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-import { AutofocusModule } from "./autofocus.directive";
+import { AutofocusModule } from './autofocus.directive';
 
 @Component({
   selector: "app-slider",
@@ -55,10 +48,6 @@ import { AutofocusModule } from "./autofocus.directive";
         display: flex;
         flex-direction: column;
         flex-basis: 180px;
-        margin: 0 4px 16px;
-        padding: 10px 22px;
-        line-height: 24px;
-        border-radius: 10px;
         text-align: center;
         cursor: pointer;
       }
@@ -70,16 +59,11 @@ import { AutofocusModule } from "./autofocus.directive";
         font-size: 22px;
       }
 
-      .card {
-        transition: ease all 300ms;
-      }
-
       .card:focus {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
         background: #fff;
         box-shadow: 0 2px 10px rgb(0 0 0 / 11%);
         outline: none;
-        font-weight: bold;
       }
 
       .details {
@@ -124,23 +108,21 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   activeIndex = 0;
 
+  timer$ = interval(5_000).pipe(
+    tap(() => {
+      this.setActive(
+        this.activeIndex + 1 > this.slides.length - 1 ? 0 : this.activeIndex + 1
+      );
+      this.cd.detectChanges();
+    })
+  );
+
   slideSub: Subscription;
 
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.slideSub = interval(5_000)
-      .pipe(
-        tap(() => {
-          this.setActive(
-            this.activeIndex + 1 > this.slides.length - 1
-              ? 0
-              : this.activeIndex + 1
-          );
-          this.cd.detectChanges();
-        })
-      )
-      .subscribe();
+    this.slideSub = this.timer$.subscribe();
   }
 
   ngOnDestroy(): void {
@@ -149,6 +131,8 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   setActive(index: number): void {
     this.activeIndex = index;
+    this.slideSub.unsubscribe();
+    this.slideSub = this.timer$.subscribe();
   }
 }
 
