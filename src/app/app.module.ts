@@ -1,10 +1,11 @@
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { PushModule } from '@rx-angular/template';
 
-import { SliderModule } from './slider.component';
 import { AppComponent } from './app.component';
 import { BannerModule } from './banner.component';
+import { SliderModule } from './slider.component';
 import { ToolbarModule } from './toolbar.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ToolbarModule } from './toolbar.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     HttpClientJsonpModule,
+    PushModule,
 
     ToolbarModule,
     BannerModule,

@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { MeetupService } from "./meetup.service";
+import { MeetupService } from './meetup.service';
 
 @Component({
   selector: "app-root",
@@ -17,7 +17,7 @@ import { MeetupService } from "./meetup.service";
 
       <section>
         <h2>Prochain évènement</h2>
-        <article *ngIf="upcomingEvent as event; else noUpcomingEvent">
+        <article *ngIf="upcomingEvent$ | push as event; else noUpcomingEvent">
           <div class="card">
             <a [href]="event.link">{{ event.name }}</a>
             <p [innerHTML]="event.description"></p>
@@ -30,7 +30,7 @@ import { MeetupService } from "./meetup.service";
 
       <section>
         <h2>Évènements passés</h2>
-        <article *ngFor="let event of pastEvents">
+        <article *ngFor="let event of pastEvents$ | push">
           <div class="card">
             <a [href]="event.link">{{ event.name }}</a>
             <p [innerHTML]="event.description"></p>
@@ -92,19 +92,13 @@ import { MeetupService } from "./meetup.service";
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  upcomingEvent = null;
-  pastEvents = [];
+  upcomingEvent$ = this.meetupService.getUpcomingEvent();
+  pastEvents$ = this.meetupService.getPastEvents();
 
-  constructor(private meetup: MeetupService) {}
+  constructor(private meetupService: MeetupService) {}
 
-  async ngOnInit() {
-    const [upcomingEvent, pastEvents] = await Promise.all([
-      this.meetup.getUpcomingEvent(),
-      this.meetup.getPastEvents(),
-    ]);
-    this.upcomingEvent = upcomingEvent.data[0];
-    this.pastEvents = pastEvents.data;
-  }
+  ngOnInit() {}
 }

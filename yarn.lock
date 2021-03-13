@@ -906,6 +906,20 @@
   dependencies:
     "@nguniversal/common" "9.0.0-rc.0"
 
+"@rx-angular/cdk@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@rx-angular/cdk/-/cdk-1.0.0-alpha.5.tgz#c94ef81d09716652c618cafa81cded0d7feabe50"
+  integrity sha512-BCYK9dicsfv8fR+OvO+ol6Y8+7H8joZaHhFzNb1+BlzWofHzJ80K0xg8cai05jAXhMQh+jLzBhtpDjNVX3zwsw==
+  dependencies:
+    tslib "^2.0.0"
+
+"@rx-angular/template@^1.0.0-beta.24":
+  version "1.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@rx-angular/template/-/template-1.0.0-beta.24.tgz#b9b45f1f4bb28db8ad9c434619bd1a0764cf2e02"
+  integrity sha512-i4Q5QEPDe8Dq7SS/GUy9GuM8eFxo4W8HuxZNuF5Y/Xdm0+glb+8oGM66IsTxkyCrTS17dIJt7+Pp2Ayq51nC4A==
+  dependencies:
+    tslib "^2.0.0"
+
 "@schematics/angular@9.0.0-rc.8":
   version "9.0.0-rc.8"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-9.0.0-rc.8.tgz#5fb7458d242efacf33a442b1b4fc156a5ec71999"
@@ -8324,6 +8338,11 @@ tslib@1.10.0, tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
+
+tslib@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
 tslint@~5.18.0:
   version "5.18.0"
