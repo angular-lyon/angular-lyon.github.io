@@ -51,7 +51,7 @@ import { MeetupService } from "./meetup.service";
       }
 
       footer {
-        margin-top: 48px;
+        margin-top: 28px;
         padding: 2rem 0;
         display: flex;
         align-items: center;

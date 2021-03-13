@@ -1,22 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Directive, ElementRef, Input, NgModule } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, NgModule, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: "[autofocus]",
 })
-export class AutofocusDirective implements AfterViewInit {
-  private focus = false;
+export class AutofocusDirective implements OnChanges {
+  @Input() autofocus: boolean = false;
 
   constructor(private el: ElementRef) {}
 
-  ngAfterViewInit() {
-    if (this.focus) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.autofocus.currentValue === true) {
       this.el.nativeElement && this.el.nativeElement.focus();
     }
-  }
-
-  @Input() set autofocus(condition: boolean) {
-    this.focus = condition !== false;
   }
 }
 
