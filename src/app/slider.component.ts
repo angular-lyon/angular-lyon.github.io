@@ -1,10 +1,10 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgModule, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AutofocusModule } from './autofocus.directive';
+import { PlatformService } from './platform.service';
 
 @Component({
   selector: "app-slider",
@@ -124,17 +124,17 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   constructor(
     private cd: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private platform: PlatformService
   ) {}
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (this.platform.isPlatformBrowser()) {
       this.timer$.subscribe();
     }
   }
 
   ngOnDestroy(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    if (this.platform.isPlatformBrowser()) {
       this.slideSub && this.slideSub.unsubscribe();
     }
   }
