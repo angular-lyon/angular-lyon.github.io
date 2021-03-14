@@ -8,7 +8,7 @@ import { MeetupService } from './meetup.service';
     <app-toolbar></app-toolbar>
     <app-banner></app-banner>
 
-    <div class="content" role="main">
+    <main class="content" role="main">
       <section>
         <h2>Communauté</h2>
         <p>Notre focus au travers du groupe :</p>
@@ -37,7 +37,7 @@ import { MeetupService } from './meetup.service';
           </div>
         </article>
       </section>
-    </div>
+    </main>
 
     <footer>
       <span>Communauté Angular Lyon.</span>

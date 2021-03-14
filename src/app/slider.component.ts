@@ -1,4 +1,5 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgModule, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -11,8 +12,10 @@ import { AutofocusModule } from './autofocus.directive';
     <div class="card-container">
       <div
         *ngFor="let slide of slides; let index = index"
-        tabindex="0"
         class="card"
+        role="button"
+        tabindex="0"
+        [attr.aria-pressed]="index === activeIndex ? true : false"
         [autofocus]="index === activeIndex ? true : false"
         (click)="setActive(index)"
       >
@@ -119,19 +122,26 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   slideSub: Subscription;
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    this.slideSub = this.timer$.subscribe();
+    if (isPlatformBrowser(this.platformId)) {
+      this.timer$.subscribe();
+    }
   }
 
   ngOnDestroy(): void {
-    this.slideSub.unsubscribe();
+    if (isPlatformBrowser(this.platformId)) {
+      this.slideSub && this.slideSub.unsubscribe();
+    }
   }
 
   setActive(index: number): void {
     this.activeIndex = index;
-    this.slideSub.unsubscribe();
+    this.slideSub && this.slideSub.unsubscribe();
     this.slideSub = this.timer$.subscribe();
   }
 }
