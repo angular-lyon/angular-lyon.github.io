@@ -19,33 +19,18 @@ export class MeetupService {
 
   constructor(private http: HttpClient, private platform: PlatformService) {}
 
+  /** Lil' trick used here:
+   *  because of CORS restrictions this code work only server-side,
+   *  using the TransferHttpCacheModule the client does not send another request. */
   getUpcomingEvent(): Observable<Meetup | null> {
-    if (this.platform.isPlatformBrowser() === false) {
-      return this.http
-        .get<Meetup[]>(this.baseUrl + "/Angular-Lyon/events")
-        .pipe(map(([meetup]) => meetup));
-    }
-
     return this.http
-      .jsonp<{ data: Meetup[] }>(
-        this.baseUrl + "/Angular-Lyon/events",
-        "callback"
-      )
-      .pipe(map(({ data: [meetup] }) => meetup));
+      .get<Meetup[]>(this.baseUrl + "/Angular-Lyon/events")
+      .pipe(map(([firstEvent]) => firstEvent ?? null));
   }
 
   getPastEvents(): Observable<Meetup[]> {
-    if (this.platform.isPlatformBrowser() === false) {
-      return this.http.get<Meetup[]>(
-        this.baseUrl + "/Angular-Lyon/events?status=past"
-      );
-    }
-
-    return this.http
-      .jsonp<{ data: Meetup[] }>(
-        this.baseUrl + "/Angular-Lyon/events?status=past",
-        "callback"
-      )
-      .pipe(map(({ data }) => data));
+    return this.http.get<Meetup[]>(
+      this.baseUrl + "/Angular-Lyon/events?status=past"
+    );
   }
 }

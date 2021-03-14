@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy,  Component, NgModule, OnInit } from '@angular/core';
 import { PushModule } from '@rx-angular/template';
+
 
 import { MeetupService } from './meetup.service';
 import { SliderModule } from './slider.component';
@@ -15,7 +16,9 @@ import { SliderModule } from './slider.component';
 
     <section>
       <h2>Prochain évènement</h2>
-      <article *ngIf="upcomingEvent$ | push as event; else placeholder">
+
+      <!-- Note: push pipe work only using the 'native' strategy server side. -->
+      <article *ngIf="upcomingEvent$ | push: 'native' as event; else placeholder">
         <div class="card">
           <a [href]="event.link">{{ event.name }}</a>
           <div [innerHTML]="event.description"></div>
@@ -32,7 +35,7 @@ import { SliderModule } from './slider.component';
 
     <section>
       <h2>Évènements passés</h2>
-      <article *ngFor="let event of pastEvents$ | push">
+      <article *ngFor="let event of pastEvents$ | push: 'native'">
         <div class="card">
           <a [href]="event.link">{{ event.name }}</a>
           <p [innerHTML]="event.description"></p>
