@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy,  Component, NgModule, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgModule, OnInit } from '@angular/core';
 import { PushModule } from '@rx-angular/template';
 
-
+import { MeetupModule } from './meetup.component';
 import { MeetupService } from './meetup.service';
 import { SliderModule } from './slider.component';
 
@@ -16,14 +16,12 @@ import { SliderModule } from './slider.component';
 
     <section>
       <h2>Prochain évènement</h2>
-
       <!-- Note: push pipe work only using the 'native' strategy server side. -->
-      <article *ngIf="upcomingEvent$ | push: 'native' as event; else placeholder">
-        <div class="card">
-          <a [href]="event.link">{{ event.name }}</a>
-          <div [innerHTML]="event.description"></div>
-        </div>
-      </article>
+      <app-meetup
+        *ngIf="upcomingEvent$ | push: 'native' as event; else placeholder"
+        [event]="event"
+      >
+      </app-meetup>
       <ng-template #placeholder>
         <div class="card">
           <p class="placeholder">
@@ -35,12 +33,11 @@ import { SliderModule } from './slider.component';
 
     <section>
       <h2>Évènements passés</h2>
-      <article *ngFor="let event of pastEvents$ | push: 'native'">
-        <div class="card">
-          <a [href]="event.link">{{ event.name }}</a>
-          <p [innerHTML]="event.description"></p>
-        </div>
-      </article>
+      <app-meetup
+        *ngFor="let event of pastEvents$ | push: 'native'"
+        [event]="event"
+      >
+      </app-meetup>
     </section>`,
   styles: [
     `
@@ -65,20 +62,6 @@ import { SliderModule } from './slider.component';
       section:last-child .card {
         margin-bottom: 0;
       }
-
-      .past-events {
-        display: flex;
-      }
-
-      .past-events > * {
-        width: 40%;
-      }
-
-      .card a {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 8px;
-      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -93,7 +76,7 @@ export class HomeComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [CommonModule, PushModule, SliderModule],
+  imports: [CommonModule, PushModule, SliderModule, MeetupModule],
   declarations: [HomeComponent],
   exports: [HomeComponent],
 })
