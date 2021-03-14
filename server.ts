@@ -8,8 +8,7 @@ import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
-// The Express app is exported so that it can be used by serverless Functions.
-export function app() {
+export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/angular-lyon/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -22,9 +21,6 @@ export function app() {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // Example Express Rest API endpoints
-  // app.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
@@ -37,7 +33,7 @@ export function app() {
   return server;
 }
 
-function run() {
+function run(): void {
   const port = process.env.PORT || 4000;
 
   // Start up the Node server
@@ -52,7 +48,8 @@ function run() {
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
-if (mainModule && mainModule.filename === __filename) {
+const moduleFilename = mainModule && mainModule.filename || '';
+if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 

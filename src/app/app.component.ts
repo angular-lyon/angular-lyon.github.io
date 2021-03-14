@@ -24,7 +24,9 @@ import { MeetupService } from './meetup.service';
           </div>
         </article>
         <ng-template #placeholder>
-          <p class="placeholder">Pas d'évènement prévu prochainement, patience!</p>
+          <div class="card">
+            <p class="placeholder">Pas d'évènement prévu prochainement, patience.</p>
+          </div>
         </ng-template>
       </section>
 
@@ -65,11 +67,6 @@ import { MeetupService } from './meetup.service';
         margin: 12px 0;
       }
 
-      section h2 {
-        margin-top: 0;
-        margin-bottom: 12px;
-      }
-
       app-slider,
       section {
         margin-top: 38px;
@@ -89,10 +86,6 @@ import { MeetupService } from './meetup.service';
 
       .past-events > * {
         width: 40%;
-      }
-
-      .placeholder {
-        margin-top: 36px;
       }
 
       .card a {
