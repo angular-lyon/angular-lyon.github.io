@@ -1,28 +1,32 @@
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { PushModule } from '@rx-angular/template';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BannerModule } from './banner.component';
-import { SliderModule } from './slider.component';
+import { HomeComponent } from './home.component';
 import { ToolbarModule } from './toolbar.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     HttpClientJsonpModule,
-    PushModule,
+
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full',
+      },
+    ]),
 
     ToolbarModule,
     BannerModule,
-    SliderModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
