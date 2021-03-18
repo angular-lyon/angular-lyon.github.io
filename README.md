@@ -36,7 +36,7 @@ http-server ./dist/angular-lyon/browser
 To publish a static pre-rendered build run the following:
 
 ```bash
-yarn release
+yarn deploy
 ```
 
 ## License
