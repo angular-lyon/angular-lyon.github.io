@@ -1,6 +1,6 @@
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
@@ -13,6 +13,8 @@ import { ToolbarModule } from './toolbar.component';
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserTransferStateModule,
+
     HttpClientModule,
     HttpClientJsonpModule,
     TransferHttpCacheModule,
