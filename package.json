@@ -13,7 +13,7 @@
     "serve:ssr": "node dist/angular-lyon/server/main.js",
     "build:ssr": "ng build --prod && ng run angular-lyon:server:production",
     "prerender": "ng run angular-lyon:prerender",
-    "deploy": "ng deploy --build-target=angular-lyon:prerender"
+    "deploy": "ng run angular-lyon:prerender && ng deploy --no-build"
   },
   "private": true,
   "dependencies": {
@@ -27,8 +27,8 @@
     "@angular/platform-server": "~11.2.5",
     "@angular/router": "~11.2.5",
     "@nguniversal/express-engine": "^11.2.1",
-    "@rx-angular/cdk": "^1.0.0-alpha.5",
-    "@rx-angular/template": "^1.0.0-beta.24",
+    "@rx-angular/cdk": "^1.0.0-alpha.8",
+    "@rx-angular/template": "^1.0.0-beta.25",
     "express": "^4.17.1",
     "rxjs": "~6.5.3",
     "tslib": "^2.0.0",

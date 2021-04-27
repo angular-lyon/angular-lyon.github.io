@@ -234,6 +234,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@angular/platform-browser@^11.2.0":
+  version "11.2.11"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-11.2.11.tgz#d7a1643d9615e6bbda854e91d7c77ae185583ca0"
+  integrity sha512-5DwczcZHRDh9E+hfzoGC+lfbJe95w8C1mg0EFtxxeGbdtaAXGzlfhDWvLceB5cpd8UNRVY7QvOZ/erfH2i3QTw==
+  dependencies:
+    tslib "^2.0.0"
+
 "@angular/platform-browser@~11.2.5":
   version "11.2.5"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-11.2.5.tgz#a00829cf0c23a3bfd28942fac35fafde9a7c970c"
@@ -1284,18 +1291,20 @@
     node-gyp "^7.1.0"
     read-package-json-fast "^2.0.1"
 
-"@rx-angular/cdk@^1.0.0-alpha.5":
-  version "1.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/@rx-angular/cdk/-/cdk-1.0.0-alpha.5.tgz#c94ef81d09716652c618cafa81cded0d7feabe50"
-  integrity sha512-BCYK9dicsfv8fR+OvO+ol6Y8+7H8joZaHhFzNb1+BlzWofHzJ80K0xg8cai05jAXhMQh+jLzBhtpDjNVX3zwsw==
+"@rx-angular/cdk@^1.0.0-alpha.8":
+  version "1.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/@rx-angular/cdk/-/cdk-1.0.0-alpha.8.tgz#892d0857d126188088a666b0849bdc57290185a7"
+  integrity sha512-pSCphPlfIJI2cj68oBiQS7GOZVSJAdlzRUusnXz+GpVwjH2TCQrHKTwr2m5wBiDbttiLoFfQETo/Cj3AR6OFWg==
   dependencies:
+    rxjs "^6.6.3"
     tslib "^2.0.0"
 
-"@rx-angular/template@^1.0.0-beta.24":
-  version "1.0.0-beta.24"
-  resolved "https://registry.yarnpkg.com/@rx-angular/template/-/template-1.0.0-beta.24.tgz#b9b45f1f4bb28db8ad9c434619bd1a0764cf2e02"
-  integrity sha512-i4Q5QEPDe8Dq7SS/GUy9GuM8eFxo4W8HuxZNuF5Y/Xdm0+glb+8oGM66IsTxkyCrTS17dIJt7+Pp2Ayq51nC4A==
+"@rx-angular/template@^1.0.0-beta.25":
+  version "1.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/@rx-angular/template/-/template-1.0.0-beta.25.tgz#f78f6730e45b1ff7260aca9c811ced2915498dec"
+  integrity sha512-nzUgSDbPM2fbFlwCx5lQVNqvgrL9W0kWjycLwzGYAh81+gvm2UJG7lersuLuc6sXkt3DF9cc0lXd0DtLjFBAgg==
   dependencies:
+    "@angular/platform-browser" "^11.2.0"
     tslib "^2.0.0"
 
 "@schematics/angular@11.2.4":
@@ -8787,6 +8796,13 @@ rxjs@^6.5.5, rxjs@^6.6.0:
   version "6.6.6"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.6.tgz#14d8417aa5a07c5e633995b525e1e3c0dec03b70"
   integrity sha512-/oTwee4N4iWzAMAL9xdGKjkEHmIwupR3oXbQjCKywF1BeFohswF3vZdogbmEF6pZkOsXTzWkrZszrWpQTByYVg==
+  dependencies:
+    tslib "^1.9.0"
+
+rxjs@^6.6.3:
+  version "6.6.7"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
+  integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
   dependencies:
     tslib "^1.9.0"
 
